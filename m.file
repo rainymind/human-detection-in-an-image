@@ -1,0 +1,14 @@
+% Load the pre-trained Viola-Jones cascade classifier for human detection
+detector = vision.CascadeObjectDetector('UpperBody');
+
+% Read the input image
+img = imread('image.jpg');
+
+% Detect human(s) in the image
+bbox = step(detector, img);
+
+% Insert bounding boxes around detected human(s)
+detectedImg = insertObjectAnnotation(img, 'rectangle', bbox, 'Human');
+
+% Display the result
+figure; imshow(detectedImg); title('Detected Humans');
